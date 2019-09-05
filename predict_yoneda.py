@@ -13,7 +13,10 @@ import csv
 
 args=sys.argv
 input_dir=args[1]
-#input_dir=os.path.abspath(input_dir)
+try:
+   output_csv=args[2]
+except:
+   output_csv='results.csv'
 
 input_size=416
 max_box_per_image = 10
