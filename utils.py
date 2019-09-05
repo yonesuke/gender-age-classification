@@ -149,6 +149,7 @@ def draw_boxes(image, boxes, labels):
 def getFacesList(image, boxes):
     imgList=[]
     i=0
+    areas=[]
     for box in boxes:
         i=i+1
         if (len(boxes) ==1):
@@ -163,26 +164,26 @@ def getFacesList(image, boxes):
         height, width = image.shape[:2]
         #adjustment
         if (xmin<0):
-            print("xmin<0")
+            #print("xmin<0")
             dif=xmin
             xmin=max(xmin,0)
             ymin=int(round(ymin-dif/2))
             ymax=int(round(ymax+dif/2))
         if (ymin<0):
-            print("ymin<0",)
+            #print("ymin<0",)
             dif=ymin
             ymin=max(ymin,0)
             xmin=int(round(xmin-dif/2))
             xmax=int(round(xmax+dif/2)) 
-            print("ymin<0 xmin="+str(xmin)+"xmax"+str(xmax)+"dist1 ="+str(xmax-xmin)+"dist2="+str(ymax-ymin))
+            #print("ymin<0 xmin="+str(xmin)+"xmax"+str(xmax)+"dist1 ="+str(xmax-xmin)+"dist2="+str(ymax-ymin))
         if (xmax>width):
-            print("xmax>width")
+            #print("xmax>width")
             dif=width-xmax
             xmax=min(xmax,width )
             ymin=int(round(ymin-dif/2))
             ymax=int(round(ymax+dif/2))
         if (ymax>height):
-            print("xmax>height")
+            #print("xmax>height")
             dif=width-ymax
             ymin=min(ymax,height )
             xmin=int(round(xmin-dif/2))
@@ -193,13 +194,26 @@ def getFacesList(image, boxes):
         #ymin=max(ymin,0)
         #ymax=min(ymax,height )
         
-        #print("width: "+str(width)+" height: "+str(height)+" xmin: "+str(xmin)+ " xmax: "+str(xmax)+" ymin: "+str(ymin)+ " ymax: "+str(ymax) )
+        #yoneda added
+        if ymin!=0:
+            ymin=ymin-1
+        if xmin!=0:
+            xmin=xmin-1
+        if ymax!=0:
+            ymax=ymax-1
+        if xmax!=0:
+            xmax=xmax-1
         
+        #print("width: "+str(width)+" height: "+str(height)+" xmin: "+str(xmin)+ " xmax: "+str(xmax)+" ymin: "+str(ymin)+ " ymax: "+str(ymax) )
+        area=(ymax-ymin)*(xmax-xmin)
+        areas.append(area)
         path = os.path.dirname(os.path.abspath(__file__))+'/detected_faces/image_extracted'+str(i)+'.jpg'
         cv2.imwrite(path, image[ymin:ymax,xmin:xmax])
         imgList.append(path)
 
-    return imgList        
+    areas=np.array(areas)
+    max_idx=np.argmax(areas)
+    return [imgList[max_idx],max_idx]
 
 def draw_boxes_v2(image, boxes, labels,listPrediction):
     
