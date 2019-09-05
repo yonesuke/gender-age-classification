@@ -19,6 +19,13 @@ Pour exécuter le script ```python prediction_age_gender.py``` en modifiant le l
 
 ## You can run our predicator with the command:
 
+### Preparation
+Set conda environmet
+```conda env create -f gender_age.yml```
+```source activate gender_age```
+
+### Let's Start!
+
 ```python prediction_age_gender.py```
 
 * You can modify the value of ```image_path``` in ```prediction_age_gender.py``` to run our model on your own picture/video.
