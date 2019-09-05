@@ -63,7 +63,7 @@ for image_path in tqdm(image_paths):
         result=[image_path,gender,listPrediction[0][1]]
         results.append(result)
         
-with open('results.csv', mode='w') as f:
+with open(output_csv, mode='w') as f:
     writer = csv.writer(f)
     writer.writerows(results)
 
