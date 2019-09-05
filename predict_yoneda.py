@@ -28,16 +28,16 @@ loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json, custom_objects={"tf": tf})
 # load weights into new model
-print("Start loading model from disk")
+#print("Start loading model from disk")
 loaded_model.load_weights("freeze_graph/model.h5")
 print("Loaded model from disk")
 
 g1=Graph()
 
 image_paths=glob(input_dir+'/*png')
-image_paths=sorted(image_paths.extend(glob(input_dir+'/*jpg')))
+image_paths.extend(glob(input_dir+'/*jpg'))
+image_paths=sorted(image_paths)
 
-#os.chdir('/Users/yonesuke/Documents/baito/datagrid/age_gender/gender-age-classification')
 results=[]
 for image_path in tqdm(image_paths):
     image = cv2.imread(image_path)

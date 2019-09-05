@@ -208,7 +208,7 @@ def getFacesList(image, boxes):
         area=(ymax-ymin)*(xmax-xmin)
         areas.append(area)
         path = os.path.dirname(os.path.abspath(__file__))+'/detected_faces/image_extracted'+str(i)+'.jpg'
-        cv2.imwrite(path, image[ymin:ymax,xmin:xmax])
+        #cv2.imwrite(path, image[ymin:ymax,xmin:xmax])
         imgList.append(path)
 
     areas=np.array(areas)
