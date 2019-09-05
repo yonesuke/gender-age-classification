@@ -23,7 +23,7 @@ Pour exécuter le script ```python prediction_age_gender.py``` en modifiant le l
 
 * You can modify the value of ```image_path``` in ```prediction_age_gender.py``` to run our model on your own picture/video.
 
-* Note: For the sake of simplicity, I use Keras for the YOLO implementation, but I usetensorflow for the other graphs.
+* Note: For the sake of simplicity, I use Keras for the YOLO implementation, but I use tensorflow for the other graphs.
 
 * Note2: Don't forget to download the weight and to put them in th corresponding folder (ageWeights/freeze_graph/genderWeights)
 	* This link to each of them is available in the folder
@@ -36,7 +36,7 @@ Several prediction errors could happen in the following case:
 * The picture includes many character that are very closed to each other
 	* The picture used in the training mostly includes people are not too closed for each other
 * The face is very closed to the border
-	* Our system consists in the combinasion of 2 neural networks. The first one extract the faces as a square image, the second one resize them to the correct input size and predicts the corresponding label of each of them. Howeve if the face is closed to the picture's border, the extracted face may not be a square size image, wich force our system to distord the image in order to make it fit in our model. It can lead to pottential errors.
+	* Our system consists in the combination of 2 neural networks. The first one extract the faces as a square image, the second one resize them to the correct input size and predicts the corresponding label of each of them. However if the face is closed to the picture's border, the extracted face may not be a square size image, which force our system to distord the image in order to make it fit in our model. It can lead to potential errors.
 * The lighting condition are very different from our training set
 	* The picture used in the test set should have similar distribution as the validation set.
 	
