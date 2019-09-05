@@ -21,7 +21,9 @@ Pour exécuter le script ```python prediction_age_gender.py``` en modifiant le l
 
 ### Preparation
 Set conda environmet
+
 ```conda env create -f gender_age.yml```
+
 ```source activate gender_age```
 
 ### Let's Start!
