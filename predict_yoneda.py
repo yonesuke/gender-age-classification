@@ -34,7 +34,9 @@ print("Loaded model from disk")
 
 g1=Graph()
 
-image_paths=sorted(glob(input_dir+'/*png'))
+image_paths=glob(input_dir+'/*png')
+image_paths=sorted(image_paths.extend(glob(input_dir+'/*jpg')))
+
 #os.chdir('/Users/yonesuke/Documents/baito/datagrid/age_gender/gender-age-classification')
 results=[]
 for image_path in tqdm(image_paths):
