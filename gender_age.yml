@@ -1,4 +1,4 @@
-name: age_gender
+name: gender_age
 channels:
   - defaults
 dependencies:
